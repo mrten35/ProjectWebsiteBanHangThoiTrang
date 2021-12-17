@@ -95,7 +95,15 @@ if (count($_POST) > 0) {
     $rdg_sex=$_POST["rdg_sex"];
     $user=getUserByEmail($txt_email);
 
-   
+    if(isset($user['email'])) {
+        echo'<script>
+        window.alert("Email đã tồn tại! Đăng ký thất bại");
+        window.history.back();
+        </script>';
+        die();
+       
+    }
+
     $user=getUserByAcount($txt_account);
     if(isset($user['tendangnhap'])) {
         echo'<script>
