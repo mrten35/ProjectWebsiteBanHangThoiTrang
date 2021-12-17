@@ -34,6 +34,12 @@ function getUserByEmail($email){
            
            header("Location: ../view/index.php");
            
+        }else{
+            echo'<script>
+            window.alert("Email hoặc mật khẩu không tồn tại! Đăng nhập thất bại");
+            window.history.back();
+            </script>';
+            die();
         }
     }
 ?>
