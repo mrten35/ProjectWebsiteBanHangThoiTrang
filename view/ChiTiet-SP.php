@@ -36,35 +36,64 @@
         <div class="row s_product_inner">
           <div class="col-lg-6">
             <?php
-                $i=0;
-                $arrAnh=array("img/image/đầm nữ/1.jpg");
-                  echo'<div class="s_product_img">';             
-                  echo'<img class="card-img" src="'.$arrAnh[$i].'" alt="" />';
-                  echo'</div>';
+               $servername = "localhost:4306";
+               $username = "root";
+               $password = "";
+               $dbname="thweb";
+               
+               try{
+                   $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+                   // set the PDO error mode to exception
+                   $id=$_GET['id'];
+                   $stmt = $conn->prepare("SELECT hinh FROM  sanpham where masp=:masp");
+                   $stmt->bindParam(':masp', $id);
+                   $stmt->execute();
+                   $sanphams = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                   if($sanphams){
+                    foreach($sanphams as $sanpham){
+                      echo'<div class="s_product_img">';             
+                      echo'<img class="card-img" src="'.$sanpham['hinh'].'" alt="" />';
+                      echo'</div>';
+                    }
+                  }
+                } catch(PDOException $e) {
+                  echo "thanh cong" . $e->getMessage();
+                }finally{
+                  $conn = null;
+              }
+              
             ?>
           </div>
           <div class="col-lg-5 offset-lg-1">
             <div class="s_product_text">
             <?php
-              $i=0;
-              $arrTensp=array("ĐẦM CHỮ A 2 LỚP");
-              $arrGia=array("240.000₫");
-              $arrSize=array("S,M,L");
-              $arrChatlieu=array("Jean");
-              $arrDescription=array("Thông tin sản phẩm quần jean ôm cạp cao nắp lệch hót bên mình sản xuất có chất liệu co giãn tốt, chất jean mỏng, 
-              lý do bên mình chọn làm loại jean mỏng là vì bên mình đã 
-              làm trong lĩnh vực jean rất nhiều năm, nhận thấy những ưu điểm nổi bật jean mỏng đem lại.");
-              echo' <h3>'.$arrTensp[$i].'</h3>';
-              echo'<h2>'.$arrGia[$i].'</h2>';
-              echo'<ul class="list">';
-              echo'<li>';
-              echo'<a class="active" href="#"><span>Size :</span>'.$arrSize[$i].'</a>';
-              echo'</li>';
-              echo'<li>';
-              echo'<a href="#"> <span>Chất liệu :</span>'.$arrChatlieu[$i].'</a>';
-              echo'</li>';
-              echo'</ul>';
-              echo'<p>'.$arrDescription[$i].'</p>';
+               $servername = "localhost:4306";
+               $username = "root";
+               $password = "";
+               $dbname="thweb";
+               
+               try{
+                   $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+                   // set the PDO error mode to exception
+                   $id=$_GET['id'];
+                   $stmt = $conn->prepare("SELECT tensp, giamoi, mausac, soluong , mota FROM  sanpham where masp=:masp");
+                   $stmt->bindParam(':masp', $id);
+                   $stmt->execute();
+                   $sanphams = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                   if($sanphams){
+                    foreach($sanphams as $sanpham){
+                      echo' <h3>'.$sanpham['tensp'].'</h3>';
+                      echo'<h2>'.$sanpham['giamoi'].'</h2>';
+                      echo'<div>Màu sắc: '.$sanpham['mausac'].'</div>';
+                      echo'<div>Số lượng: '.$sanpham['soluong'].'</div>';
+                      echo'<p>'.$sanpham['mota'].'</p>';
+                    }
+                  }
+                } catch(PDOException $e) {
+                  echo "thanh cong" . $e->getMessage();
+                }finally{
+                  $conn = null;
+              }
             ?>
               <div class="product_count">
                 <label for="qty">Quantity:</label>
@@ -93,8 +122,8 @@
                 </button>
               </div>
               <div class="card_area">
-                <a class="main_btn" href="cart.php"style="background:#007bff;" >Thêm vào giỏ hàng</a>
-                <a class="main_btn" href="Thanhtoan.php" style="background:red;">Mua ngay</a>
+                <a class="main_btn" href="../view/giohang.php"style="background:#007bff;" >Thêm vào giỏ hàng</a>
+                <a class="main_btn" href="../view/Thanhtoan.php" style="background:red;">Mua ngay</a>
               </div>
             </div>
           </div>

@@ -56,7 +56,7 @@
           <h2 class="contact-title">Liên lạc</h2>
         </div>
         <div class="col-lg-8 mb-4 mb-lg-0">
-          <form class="form-contact contact_form" action="contact_process.php" method="post" id="contactForm" novalidate="novalidate">
+          <form class="form-contact contact_form" action="../view/contact_process.php" method="post" id="contactForm" novalidate="novalidate">
             <div class="row">
               <div class="col-12">
                 <div class="form-group">

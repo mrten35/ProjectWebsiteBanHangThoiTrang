@@ -34,40 +34,55 @@
             <div class="latest_product_inner" style="margin-top:-30px">
               <div class="row">
                 <?php
-                  $arrAnh=array("img/image/đầm nữ/1.jpg","img/image/đầm nữ/2.jpg","img/image/đầm nữ/3.jpg","img/image/đầm nữ/4.jpg",
-                        "img/image/đầm nữ/5.jpg","img/image/đầm nữ/6.jpg","img/image/đầm nữ/7.jpg","img/image/đầm nữ/8.jpg","img/image/đầm nữ/9.jpg");
-                  $arrTensp=array("ĐẦM CHỮ A 2 LỚP","TWEED DRESSES","ĐẦM REN ÔM VIỀN MÀU","ĐẦM NHUNG CỔ VUÔNG","ĐẦM ÔM TAY HẾN 2 LỚP",
-                              "ĐẦM XÒE TAY HẾN","ĐẦM LEN DÁNG ÔM","ĐẦM ĐUÔI CÁ DÁNG NGẮN","ĐẦM XẾP XOẮN CỔ");
-                  $arrGia=array("240.000₫","320.000₫","170.000₫","460.000₫","275.000₫","345.000₫","270.000₫","175.000₫","540.000₫");
-                  $arrDel=array("260.000₫","","","","300.000₫","","","200.000₫","");
-                  for($i=0;$i<count($arrTensp);$i++){
-                    echo'<div class="col-lg-4 col-md-6">';
-                    echo'<div class="single-product">';
-                    echo'<div class="product-img">';
-                    echo'<img class="card-img" src="'.$arrAnh[$i].'" alt="" />';
-                      echo' <div class="p_icon">';
-                      echo' <a href="ChiTiet-SP.php">';
-                      echo'   <i class="ti-eye"></i>';
-                      echo' </a>';
-                      echo'<a href="#">';
-                      echo'<i class="ti-heart"></i>';
-                      echo'</a>';
-                      echo'<a href="giohang.php">';
-                      echo'<i class="ti-shopping-cart"></i>';
-                      echo'</a>';
-                      echo'</div>';
-                      echo'</div>';
-                      echo'<div class="product-btm">';
-                      echo'<a href="ChiTiet-SP.php" class="d-block">';
-                      echo'<h4>'.$arrTensp[$i].'</h4>';
-                      echo'</a>';
-                      echo'<div class="mt-3">';
-                      echo'<span class="mr-4">'.$arrGia[$i].'</span>';
-                      echo'<del>'.$arrDel[$i].'</del>';
-                      echo'</div>';
-                      echo'</div>';
-                      echo'</div>';
-                      echo'</div>';
+                  $servername = "localhost:4306";
+                  $username = "root";
+                  $password = "";
+                  $dbname="thweb";
+                  
+                  try {
+                      $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+                      // set the PDO error mode to exception
+                      $stmt = $conn->prepare("SELECT masp, tensp, giamoi, giacu, hinh FROM  sanpham where madm='DN'");
+                      $stmt->execute();
+                      $sanphams = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        
+                      if($sanphams){
+                        foreach($sanphams as $sanpham){
+                          echo'<div class="col-lg-4 col-md-6">';
+                          echo'<div class="single-product"> '; 
+                          echo'<div class="product-img">';
+                          echo'<a href="ChiTiet-SP.php?id='.$sanpham['masp'].'">';
+                          echo'<img class="img-fluid w-100" src="'.$sanpham['hinh'].'" alt="" />';
+                          echo'</a>';
+                          echo'<div class="p_icon">';
+                          echo'<a href="ChiTiet-SP.php?id='.$sanpham['masp'].'">';
+                          echo'<i class="ti-eye"></i>';
+                          echo'</a>';
+                          echo'<a href="#">';
+                          echo'<i class="ti-heart"></i>';
+                          echo'</a>';
+                          echo'<a href="giohang.php">';
+                          echo'<i class="ti-shopping-cart"></i>';
+                          echo'</a>';
+                          echo'</div>';
+                          echo'</div>';
+                          echo'<div class="product-btm">';
+                          echo'<a href="ChiTiet-SP.php?id='.$sanpham['masp'].'" class="d-block">';
+                          echo'<h4>'.$sanpham['tensp'].'</h4>';
+                          echo'</a>';
+                          echo'<div class="mt-3">';
+                          echo'<span class="mr-4">'.$sanpham['giamoi'].'</span>';
+                          echo'<del>'.$sanpham['giacu'].'</del>';
+                          echo'</div>';
+                          echo'</div>';
+                          echo'</div>';
+                          echo'</div>';
+                        }
+                      }
+                    } catch(PDOException $e) {
+                      echo "thanh cong" . $e->getMessage();
+                    }finally{
+                      $conn = null;
                   }
                 ?>
   

@@ -70,7 +70,7 @@
                         <i class="lnr lnr-chevron-up"></i>
                       </button>
                       <button
-                        onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp ; &amp ; sst > 0 ) result.value--;return false;";
+                        onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;"
                         class="reduced items-count"
                         type="button"
                       >
