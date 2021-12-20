@@ -10,7 +10,7 @@
         <div class="row"> 
             <div class="col-xs-12 col-sm-12 col-md-4 well well-sm col-md-offset-4"> 
                 <legend><i class="glyphicon glyphicon-globe"></i> Đăng nhập!</legend> 
-                <form action="../controller/dangnhapController.php" method="POST" > 
+                <form action="../controller/DangNhapController.php" method="POST" > 
                         <input class="form-control" name="txt_username" placeholder="Email" type="username">
                         <input class="form-control" name="txt_password" placeholder="Mật khẩu" type="password"> 
                         <div class="form-group"> 
