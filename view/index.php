@@ -43,7 +43,7 @@
           $arrTensp=array("CHÂN VẤY 3 TẦNG","CHÂN VẤY RÚT DÂY","CHÂN VẤY HOA","ĐẦM REN ÔM VIỀN MÀU","ĐẦM NHUNG CỔ VUÔNG","ĐẦM ÔM TAY HẾN 2 LỚP");
           $arrGia=array("170.000₫","460.000₫","275.000₫","170.000₫","460.000₫","275.000₫");
           $arrGiam=array("","","300.000₫","","","300.000₫");*/
-          $servername = "localhost:4306";
+          $servername = "localhost";
           $username = "root";
           $password = "";
           $dbname="thweb";
